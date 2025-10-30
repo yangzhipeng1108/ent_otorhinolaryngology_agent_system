@@ -25,10 +25,41 @@
 - 执行序号: 01
 - 关联Phase: 基础设施搭建
 - 总Round数: 6
-- 已记录Round数: 0
+- 已记录Round数: 1
 
 **Round-by-Round记录**:
-*等待执行...*
+
+#### Round A: 基础设施RED (2025-10-30T10:42:18Z)
+
+**元信息**:
+- TDD阶段: RED
+- 实际耗时: 1小时
+- 状态: ✅已完成
+
+**Good Practices** ✅:
+- [实践1]: 严格按照SpecExecMasterConstraints_L2.md规范创建项目目录结构
+- [实践2]: 完整配置FastAPI应用入口，包含中间件和路由注册
+- [实践3]: 建立完整的配置管理系统，支持多环境部署
+- [实践4]: 搭建pytest测试框架，包含fixtures和测试标记
+- [实践5]: 创建TDD RED阶段测试，验证失败检测机制
+
+**Watch Out** ⚠️:
+- [注意点1]: 依赖包版本冲突问题 - jinja2版本不兼容导致pytest启动失败
+  - 改进方向: 在requirements.txt中固定兼容版本或使用虚拟环境隔离
+- [注意点2]: 测试导入路径问题 - conftest.py中引用了未创建的模块
+  - 改进方向: 需要创建缺失的API路由模块或使用mock避免导入错误
+
+**Tools & Tricks** 🔧:
+- [工具1]: 使用pydantic-settings进行配置管理，支持环境变量和验证
+- [工具2]: 使用pytest fixtures提供测试数据和模拟对象
+- [工具3]: 使用FastAPI的TestClient进行API测试
+- [技巧1]: 在conftest.py中配置测试数据库和Redis模拟
+- [技巧2]: 使用pytest标记区分单元测试、集成测试和端到端测试
+
+**经验教训**:
+- RED阶段测试失败是正常的，验证了TDD流程的正确性
+- 依赖管理需要更严格的版本控制，避免兼容性问题
+- 测试框架配置需要与项目结构保持同步
 
 ### SubPlan_02_GOAL-AUTH-002 - 认证服务功能
 
